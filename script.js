@@ -47,9 +47,12 @@ addBookButton.addEventListener("click", addBook);
 function addBook(event) {
 	event.preventDefault();
 	let input = document.getElementById("bookTitle");
-	let result = document.getElementsByClassName("result")[0];
+	let result = document.getElementsByClassName("card-container")[0];
 	let p = document.createElement("p");
-	p.innerText = input.value;
-	result.appendChild(p);
+	// p.innerText = input.value;
+
+	// p.innerHTML = ``
+
+	// result.appendChild(p);
 }
-bookList();
+// bookList();

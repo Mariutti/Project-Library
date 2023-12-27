@@ -8,6 +8,7 @@
 	margin: 0;
 	padding: 0;
 	font: inherit;
+	scroll-behavior: smooth;
 }
 
 /* Remove default margin */
@@ -58,7 +59,7 @@ picture {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
 	html:focus-within {
-		scroll-behavior: auto;
+		scroll-behavior: smooth;
 	}
 
 	*,
@@ -67,7 +68,7 @@ picture {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
+		scroll-behavior: smooth !important;
 	}
 }
 
@@ -103,7 +104,7 @@ picture {
 
 body {
 	display: grid;
-	grid-template-rows: 2fr 8fr 0.5fr;
+	grid-template-rows: 1.5fr 8fr 0.5fr;
 }
 
 header {
@@ -120,14 +121,14 @@ header > h1 {
 
 main {
 	display: grid;
-	grid-template-rows: 1fr 3fr;
+	grid-template-rows: 1fr 6fr;
 }
 
-main > section > form {
-	padding: 2rem;
+main > .form-section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.137);
 }
 
 main > section > form > fieldset {
@@ -144,6 +145,41 @@ main > section > form > fieldset > label > input{
 
 main > section > form > fieldset > button {
 	padding: .1rem .3rem;
+}
+.book-cards {
+	padding: 0 20px;
+}
+
+#bookList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+
+#bookList > h2 {
+	font-weight: bold;
+	font-size: 2rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+
+.card-container {
+	overflow-y: auto;
+	max-height: 55vh;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 2rem;
+}
+
+.card {
+	padding: 1rem;
+	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
 }
 
 footer {
