@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Library</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header class="bg-quaternary">
+			<h1>Projec: My book collection</h1>
+		</header>
+		<main class="bg-tertiary">
+			<section>
+				<form action="#">
+					<fieldset>
+						<label for="bookTitle">
+							<input
+								type="text"
+								name="bookTitle"
+								id="bookTitle"
+								aria-label="Book Title"
+								placeholder="Book Title"
+							/>
+						</label>
+						<label for="author">
+							<input
+								type="text"
+								name="author"
+								id="bookAuthor"
+								aria-label="Book Author"
+								placeholder="Book Author"
+							/>
+						</label>
+						<label for="bookPages">
+							<input
+								type="number"
+								name="bookPages"
+								id="bookPages"
+								aria-label="Book Pages"
+								placeholder="Total Number of Pages"
+							/>
+						</label>
+
+						<button type="submit" id="addBookButton">Add Book</button>
+					</fieldset>
+				</form>
+			</section>
+			<section>
+				<ul id="bookList">
+					<h2>my Books:</h2>
+				</ul>
+				<div class="result"></div>
+			</section>
+		</main>
+		<footer class="bg-secondary">
+			<p>© 2023 Mariutti</p>
+		</footer>
+		<script src="./script.js"></script>
+	</body>
+</html>
