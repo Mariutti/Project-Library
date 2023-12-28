@@ -1,3 +1,7 @@
+window.onload = bookList
+
+const myLibrary = [];
+
 function Book(title, author, pages) {
 	this.title = title;
 	this.author = author;
@@ -5,21 +9,15 @@ function Book(title, author, pages) {
 	this.isReaded = false;
 }
 
-const lordOfTheRings = new Book("Lord of the Rings", "J.R.R. Tolkien", 1178);
-
-lordOfTheRings.isReaded = true;
-
-console.log(lordOfTheRings.title);
-console.log(lordOfTheRings.author);
-
 Book.prototype.info = function () {
 	return `${this.title} by ${this.author}, ${this.pages} pages, ${
 		this.isReaded ? "already readed" : "not read yet"
 	}`;
 };
 
-console.log(lordOfTheRings.info());
-const myLibrary = [];
+const lordOfTheRings = new Book("Lord of the Rings", "J.R.R. Tolkien", 1178);
+
+lordOfTheRings.isReaded = true;
 
 const newBook = new Book();
 myLibrary.push(lordOfTheRings);
@@ -27,32 +25,39 @@ myLibrary.push(new Book("The Hobbit", "J.R.R.Tolkien", 450));
 
 function addBookToLibrary(book) {
 	myLibrary.push(book);
-	// do stuff here
 }
 
 function bookList() {
+	const ulBooks = document.querySelector(".card-container");
+	// ulBooks.innerHTML = ''
 	myLibrary.map((book) => {
-		const ulBooks = document.getElementById("bookList");
-		const li = document.createElement("li");
-		li.innerHTML = `${book.title}`;
-		ulBooks.appendChild(li);
+
+		const li = document.createElement('li')
+		li.classList.add('card')
+		li.innerHTML = `
+		<h3>Title: ${book.title}</h3>
+		<p>Author: ${book.author}</p>
+		<p>number of pages: ${book.pages}</p>
+		
+		`
+
+		ulBooks.appendChild(li)
 	});
 }
 
-const bookTitle = document.getElementById("bookTitle");
 
-const addBookButton = document.getElementById("addBookButton");
-addBookButton.addEventListener("click", addBook);
+const submitBtn = document.querySelector('.submitBtn');
+submitBtn.addEventListener("click", addBook);
 
 function addBook(event) {
 	event.preventDefault();
-	let input = document.getElementById("bookTitle");
-	let result = document.getElementsByClassName("card-container")[0];
-	let p = document.createElement("p");
-	// p.innerText = input.value;
+	const bookTitle = document.getElementById("bookTitle");
+	const bookAuthor = document.getElementById("bookAuthor");
+	const bookPages = document.getElementById("bookPages");
 
-	// p.innerHTML = ``
+	const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value)
 
-	// result.appendChild(p);
+	addBookToLibrary(newBook)
+	
+	bookList();
 }
-// bookList();
