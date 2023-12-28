@@ -151,13 +151,6 @@ main > section > form > fieldset > button {
 	padding: 0 20px;
 }
 
-#bookList {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 15px;
-}
-
 .book-cards > h2 {
 	font-weight: bold;
 	font-size: 2rem;
@@ -170,11 +163,14 @@ main > section > form > fieldset > button {
 	overflow-y: auto;
 	max-height: 55vh;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: auto;
 	gap: 2rem;
 }
 
 .card {
+	min-height: 11rem;
+	min-width: 13rem;
 	padding: 1rem;
 	border: 2px solid black;
 	display: flex;
@@ -188,3 +184,5 @@ footer {
 	justify-content: center;
 	align-items: center;
 }
+
+
