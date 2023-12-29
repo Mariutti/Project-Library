@@ -15,21 +15,17 @@ Book.prototype.info = function () {
 	}`;
 };
 
-const lordOfTheRings = new Book("Lord of the Rings", "J.R.R. Tolkien", 1178);
+let loftr = new Book('LoTR', 'JRR Tolkien', 1250)
 
-lordOfTheRings.isReaded = true;
-
-const newBook = new Book();
-myLibrary.push(lordOfTheRings);
-myLibrary.push(new Book("The Hobbit", "J.R.R.Tolkien", 450));
-
+addBookToLibrary(loftr)
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
 
 function bookList() {
 	const ulBooks = document.querySelector(".card-container");
-	// ulBooks.innerHTML = ''
+	ulBooks.innerHTML = "";
+	let value = 0;
 	myLibrary.map((book) => {
 		const li = document.createElement("li");
 		li.classList.add("card");
@@ -37,10 +33,14 @@ function bookList() {
 		<h3>Title: ${book.title}</h3>
 		<p>Author: ${book.author}</p>
 		<p>number of pages: ${book.pages}</p>
+		<div>
+		<span>Already readed?</span>
 		<label class="check">
-			<span>Already readed?</span>
-			<input type="checkbox" name="isReaded" id="isReaded" class="isReaded" ${book.isReaded? 'checked': ''}>	
+			<input type="checkbox" name="isReaded" class="isReaded teste teste2" ${
+				book.isReaded ? "checked" : ""
+			} value=${value++}>	
 		</label>
+		</div>
 		`;
 
 		ulBooks.appendChild(li);
@@ -56,18 +56,43 @@ function addBook(event) {
 	const bookAuthor = document.getElementById("bookAuthor");
 	const bookPages = document.getElementById("bookPages");
 
-	const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value);
+	const newBook = new Book(
+		bookTitle.value,
+		bookAuthor.value,
+		Number(bookPages.value)
+	);
 
-	addBookToLibrary(newBook);
+	if (
+		bookTitle.value !== "" &&
+		bookAuthor.value !== "" &&
+		bookPages.value !== ""
+	) {
+		addBookToLibrary(newBook);
 
-	bookList();
+		bookList();
+		bookTitle.value = "";
+		bookAuthor.value = "";
+		bookPages.value = "";
+	}
 }
 
-const checkBtn = document.querySelectorAll('.isReaded')
-checkBtn.forEach(btn => {
-	btn.addEventListener('click', checkIsReaded)
-})
+function checkIsReaded(e) {
+	const target = e.target;
+	console.log(target);
 
-function checkIsReaded(e){
-	console.log(e.target)
+	const book = myLibrary[target.value];
+	if (target.classList.contains("isReaded")) {
+		console.log("isReaded was", book.isReaded);
+		book.isReaded ? (book.isReaded = false) : (book.isReaded = true);
+		console.log("isReaded is now", book.isReaded);
+	}
+	 else{
+		
+		console.log(target.parent);
+		// console.log(book.info);
+	}
 }
+
+const cardContainer = document.querySelector(".card-container");
+
+cardContainer.addEventListener("click", checkIsReaded);

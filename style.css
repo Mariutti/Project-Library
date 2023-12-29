@@ -141,10 +141,14 @@ main > section > form > fieldset {
 
 main > section > form > fieldset > label > input{
 	text-align: center;
+	border-radius: 100svw;
+	padding: 0.2rem 1rem;
 }
 
 main > section > form > fieldset > button {
-	padding: .1rem .3rem;
+	/* padding: .1rem .3rem; */
+	padding: 0.2rem 1rem;
+	border-radius: 100svw;
 }
 
 .book-cards {
@@ -169,14 +173,19 @@ main > section > form > fieldset > button {
 }
 
 .card {
-	min-height: 11rem;
-	min-width: 13rem;
+	min-height: 15rem;
+	min-width: 15rem;
 	padding: 1rem;
 	border: 2px solid black;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
 	gap: 1rem;
+	background-color: var(--bg-clr-quaternary);
+	color: var(--text-clr-primary);
+}
+
+.card > h3 {
+	font-weight: bold;
 }
 
 footer {
@@ -185,4 +194,14 @@ footer {
 	align-items: center;
 }
 
+footer > a,
+footer > a:visited  {
+	color: #000;
+	text-decoration: none;
+}
 
+footer > a {
+	display: flex;
+	gap: .3rem;
+	align-items: center;
+}
