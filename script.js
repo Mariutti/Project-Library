@@ -15,9 +15,9 @@ Book.prototype.info = function () {
 	}`;
 };
 
-let loftr = new Book('LoTR', 'JRR Tolkien', 1250)
+let loftr = new Book("LoTR", "JRR Tolkien", 1250);
 
-addBookToLibrary(loftr)
+addBookToLibrary(loftr);
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
@@ -80,16 +80,18 @@ function checkIsReaded(e) {
 	const target = e.target;
 	console.log(target);
 
-	const book = myLibrary[target.value];
 	if (target.classList.contains("isReaded")) {
+		const book = myLibrary[target.value];
 		console.log("isReaded was", book.isReaded);
 		book.isReaded ? (book.isReaded = false) : (book.isReaded = true);
 		console.log("isReaded is now", book.isReaded);
-	}
-	 else{
-		
-		console.log(target.parent);
-		// console.log(book.info);
+		console.log(book);
+	} else {
+		const li = target.parentNode;
+		const childList = li.children;
+		const bookNumber = li.lastElementChild.lastElementChild.children[0].value;
+		const book = myLibrary[bookNumber];
+		console.log(book.info());
 	}
 }
 
