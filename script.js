@@ -16,7 +16,10 @@ Book.prototype.info = function () {
 };
 
 let loftr = new Book("LoTR", "JRR Tolkien", 1250);
+let tHobbit = new Book("The Hobbit", "JRR Tolkien", 450);
 
+addBookToLibrary(loftr);
+addBookToLibrary(tHobbit);
 addBookToLibrary(loftr);
 function addBookToLibrary(book) {
 	myLibrary.push(book);
@@ -26,7 +29,8 @@ function bookList() {
 	const ulBooks = document.querySelector(".card-container");
 	ulBooks.innerHTML = "";
 	let value = 0;
-	myLibrary.map((book) => {
+
+	myLibrary.forEach((book) => {
 		const li = document.createElement("li");
 		li.classList.add("card");
 		li.innerHTML = `
@@ -76,25 +80,37 @@ function addBook(event) {
 	}
 }
 
-function checkIsReaded(e) {
+function clickCard(e) {
 	const target = e.target;
 	console.log(target);
 
+	let li = target.parentNode;
 	if (target.classList.contains("isReaded")) {
 		const book = myLibrary[target.value];
-		console.log("isReaded was", book.isReaded);
-		book.isReaded ? (book.isReaded = false) : (book.isReaded = true);
-		console.log("isReaded is now", book.isReaded);
+		console.log(book.title, "isReaded was", book.isReaded);
+		book.isReaded = !book.isReaded;
+		console.log(book.title, "isReaded is now", book.isReaded);
 		console.log(book);
-	} else {
-		const li = target.parentNode;
-		const childList = li.children;
-		const bookNumber = li.lastElementChild.lastElementChild.children[0].value;
-		const book = myLibrary[bookNumber];
-		console.log(book.info());
+		return;
 	}
+
+	function checkParent(node) {
+		if (!node.classList.contains("card")) {
+			li = node.parentNode;
+			checkParent(li);
+		}
+	}
+	checkParent(li);
+	
+	console.log(li);
+	const childList = li.children;
+	const bookNumber = li.lastElementChild.lastElementChild.children[0].value;
+	const book = myLibrary[bookNumber];
+
+	const p = document.querySelector(".card-info");
+	p.innerText = book.info();
 }
 
 const cardContainer = document.querySelector(".card-container");
 
-cardContainer.addEventListener("click", checkIsReaded);
+cardContainer.addEventListener("click", clickCard);
