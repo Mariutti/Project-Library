@@ -15,12 +15,6 @@ Book.prototype.info = function () {
 	}`;
 };
 
-let loftr = new Book("LoTR", "JRR Tolkien", 1250);
-let tHobbit = new Book("The Hobbit", "JRR Tolkien", 450);
-
-addBookToLibrary(loftr);
-addBookToLibrary(tHobbit);
-addBookToLibrary(loftr);
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
